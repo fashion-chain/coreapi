@@ -11,7 +11,6 @@ import com.google.protobuf.ByteString;
 
 public interface ITransactionExecutorHandler {
     boolean needSignature();
-    Map<String, TransactionInfo> getTxValues();
 
     /**
      * 交易签名校验
