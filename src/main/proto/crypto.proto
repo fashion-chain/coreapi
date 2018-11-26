@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package org.fok.core.api.model;
+
+message AccountKeyPair {
+	bytes address = 1;
+	bytes privateKey = 2;
+	bytes publicKey = 3;
+	string genId = 4;
+}
