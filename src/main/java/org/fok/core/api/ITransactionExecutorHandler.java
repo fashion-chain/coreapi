@@ -1,7 +1,5 @@
 package org.fok.core.api;
 
-import java.util.Map;
-
 import org.fok.core.model.Account.AccountInfo;
 import org.fok.core.model.Block.BlockInfo;
 import org.fok.core.model.Transaction.TransactionInfo;
@@ -11,7 +9,6 @@ import com.google.protobuf.ByteString;
 
 public interface ITransactionExecutorHandler {
     boolean needSignature();
-
     /**
      * 交易签名校验
      * @param transactionInfo
