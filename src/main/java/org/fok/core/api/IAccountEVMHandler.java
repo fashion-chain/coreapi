@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
+import org.fok.core.cryptoapi.ICryptoHandler;
 import org.fok.core.model.Account.AccountInfo;
 
 import com.google.protobuf.ByteString;

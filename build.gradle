@@ -6,12 +6,13 @@ sourceCompatibility = 1.7
 buildscript {
 	dependencies { 
 		classpath "onight.osgi:zpp-gradle:3.0.0"
+		classpath "org.fok.core:org.fok.core.model:0.0.1"
 	}
 }
 
 version = '0.0.1'
 
-project.group='org.fok.core'
+project.group='org.fok'
 
 apply plugin: 'zippo'
 
@@ -44,6 +45,7 @@ sourceSets {
 dependencies {    
     compile "org.fok.core:org.fok.core.model:0.0.1"
     compile ("org.fok:org.fok.tools:0.0.1")
+    compile ("org.fok.core:org.fok.core.cryptoapi:0.0.1")
 }
 
 jar {
