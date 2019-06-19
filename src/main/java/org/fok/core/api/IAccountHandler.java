@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.fok.core.model.Account.AccountCryptoToken;
 import org.fok.core.model.Account.AccountInfo;
-import org.fok.core.model.Account.CryptoTokenValue;
+import org.fok.core.model.Account.CryptoTokenOriginValue;
 import org.fok.core.model.Account.TokenValue;
 
 import com.google.protobuf.ByteString;
@@ -21,6 +21,14 @@ import com.google.protobuf.ByteString;
 public interface IAccountHandler {
 
 	/**
+	 * 从db获取一个账户，如果不存在就创建一个
+	 * 
+	 * @param address
+	 * @return
+	 */
+	AccountInfo.Builder getAccountOrCreate(ByteString address);
+	
+	/**
 	 * 返回系统内置的手续费收费账户地址
 	 * 
 	 * @return
@@ -35,7 +43,7 @@ public interface IAccountHandler {
 	byte[] tokenValueAddress();
 
 	/**
-	 * 返回系统内容的Crypto-token账户地址。该账户保存着系统内一创建的全部Crypto-token的信息。
+	 * 返回系统内置的Crypto-token账户地址。该账户保存着系统内已创建的全部Crypto-token的信息。
 	 * 
 	 * @return
 	 */
@@ -104,6 +112,14 @@ public interface IAccountHandler {
 	 * @return
 	 */
 	int increaseNonce(AccountInfo.Builder account);
+	
+	/**
+	 * 设置账户的nonce。设置的nonce必须大于账户原有的nonce。
+	 * @param account
+	 * @param nonce
+	 * @return
+	 */
+	int setNonce(AccountInfo.Builder account, int nonce);
 
 	/**
 	 * 获取账户的基本余额
@@ -289,7 +305,7 @@ public interface IAccountHandler {
 	 * @param symbol
 	 * @return
 	 */
-	CryptoTokenValue getCryptoToken(AccountInfo.Builder oAccount, byte[] symbol);
+	CryptoTokenOriginValue getCryptoTokenOrigin(AccountInfo.Builder oAccount, byte[] symbol);
 
 	/**
 	 * 创建或更新crypto-token的发行信息。
@@ -298,7 +314,7 @@ public interface IAccountHandler {
 	 * @param symbol
 	 * @param cryptoTokenValue
 	 */
-	void putCryptoToken(AccountInfo.Builder oAccount, byte[] symbol, CryptoTokenValue cryptoTokenValue);
+	void putCryptoTokenOrigin(AccountInfo.Builder oAccount, byte[] symbol, CryptoTokenOriginValue cryptoTokenOriginValue);
 
 	/**
 	 * 获取账户的storage。若不存在<code>key</code>，则返回null。

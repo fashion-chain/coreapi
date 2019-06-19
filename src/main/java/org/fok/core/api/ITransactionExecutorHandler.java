@@ -1,6 +1,7 @@
 package org.fok.core.api;
 
 import org.fok.core.model.Account.AccountInfo;
+import org.fok.core.model.Account.AccountInfo.Builder;
 import org.fok.core.model.Block.BlockInfo;
 import org.fok.core.model.Transaction.TransactionInfo;
 import org.fok.tools.bytes.BytesHashMap;
@@ -15,7 +16,7 @@ public interface ITransactionExecutorHandler {
      * @param accounts
      * @throws Exception
      */
-    void onVerifySignature(TransactionInfo transactionInfo, BytesHashMap<AccountInfo.Builder> accounts) throws Exception;
+    void onVerifySignature(TransactionInfo transactionInfo) throws Exception;
 
     /**
      * 交易执行前的数据校验
@@ -23,7 +24,7 @@ public interface ITransactionExecutorHandler {
      * @param accounts
      * @throws Exception
      */
-    void onPrepareExecute(TransactionInfo transactionInfo, BytesHashMap<AccountInfo.Builder> accounts) throws Exception;
+    void onPrepareExecute(TransactionInfo transactionInfo) throws Exception;
 
     /**
      * 交易执行
@@ -32,7 +33,7 @@ public interface ITransactionExecutorHandler {
      * @return
      * @throws Exception
      */
-    ByteString onExecute(TransactionInfo transactionInfo, BytesHashMap<AccountInfo.Builder> accounts) throws Exception;
+    ByteString onExecute(TransactionInfo transactionInfo) throws Exception;
 
     /**
      * 交易执行成功后
@@ -52,4 +53,9 @@ public interface ITransactionExecutorHandler {
      */
     void onExecuteError(TransactionInfo transactionInfo, BlockInfo be, ByteString result) throws Exception;
 
+    /**
+     * 返回一组交易修改过的账户
+     * @return
+     */
+    BytesHashMap<Builder> getTouchAccount();
 }
